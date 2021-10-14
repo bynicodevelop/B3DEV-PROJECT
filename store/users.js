@@ -65,7 +65,16 @@ export const actions = {
 
     commit('SIGN_OUT')
   },
-  addUser({ commit }, data) {
+  async addUser({ commit }, data) {
+    // const email = data.email
+    const { email, password } = data
+
+    try {
+      await this.$fire.auth.createUserWithEmailAndPassword(email, password)
+    } catch (error) {
+      console.log(error)
+    }
+
     commit('ADD_USER', data)
   },
   removeUser({ commit }) {

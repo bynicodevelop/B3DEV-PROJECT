@@ -37,6 +37,7 @@
 
 <script>
 import { ACTIONS } from '~/store/users'
+import { BUS_ACTIONS } from '~/store/bus'
 
 export default {
   data: () => ({
@@ -55,7 +56,7 @@ export default {
   }),
 
   methods: {
-    register() {
+    async register() {
       console.log(this.email, this.password)
 
       if (this.email == '' || this.password == '') {
@@ -68,7 +69,7 @@ export default {
       }
 
       try {
-        this.$store.dispatch(ACTIONS.ADD_USER_METHOD, {
+        await this.$store.dispatch(ACTIONS.ADD_USER_METHOD, {
           email: this.email,
           password: this.password,
         })
